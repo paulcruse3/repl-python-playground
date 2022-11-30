@@ -45,12 +45,14 @@ class AhoCorasick:
 					self.out[self.goto[state][ch]] |= self.out[failure]
 					queue.append(self.goto[state][ch])
 		return states
+
 	def __find_next_state(self, current_state, next_input):
 		answer = current_state
 		ch = ord(next_input) - 97
 		while self.goto[answer][ch] == -1:
 			answer = self.fail[answer]
 		return self.goto[answer][ch]
+
 	def search_words(self, text):
 		text = text.lower()
 		current_state = 0
